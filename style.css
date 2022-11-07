@@ -1,0 +1,15 @@
+body {
+    width: 400px;
+    height: 400px;
+}
+td {
+    border: 2px solid black;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 50px;
+}   
+table {
+   position: center;
+}
