@@ -27,3 +27,24 @@ height: 320
     overflow: hidden;
     margin-bottom: 10px;
 }
+.grid .row:last-child {
+    margin-bottom: 0px;
+
+}
+.grid .row .field {
+    width: 100px;
+    height: 100px;
+    background-color: black;
+    background-color: darkslateblue;
+
+    line-height: 100px;
+    text-align: center;
+    font-size: 50px;
+    font-weight: 900;
+    color: yellow;
+    margin-right: 10px;
+
+}
+.grid .row .field:last-child {
+    margin-right: 0px;
+}
