@@ -26,3 +26,59 @@ function buildInitialState(){
         
     }
 }
+//
+function renderState(){
+
+}
+
+function tick (){
+
+
+}
+
+function clicked(row,col){
+    console.log ("clicked on board field: row", row, "col", col);
+}
+
+//How to initiate
+
+function init(){
+    //adding all event listeners for each position
+    f11.addEventListener("click", function(ev){
+        clicked(1, 1);
+    
+    });
+    f12.addEventListener("click", function(ev){
+        clicked(1, 2);
+    
+    });
+    f13.addEventListener("click", function(ev){
+        clicked(1, 3);
+    
+    });
+    f21.addEventListener("click", function(ev){
+        clicked(2, 1);
+    
+    });
+    f22.addEventListener("click", function(ev){
+        clicked(2, 2);
+    
+    });
+    f23.addEventListener("click", function(ev){
+        clicked(2, 3);
+    
+    });
+    f31.addEventListener("click", function(ev){
+        clicked(3, 1);
+    
+    });
+    f32.addEventListener("click", function(ev){
+        clicked(3, 2);
+    
+    });
+    f33.addEventListener("click", function(ev){
+        clicked(3, 3);
+    
+    });
+}
+init();
