@@ -32,7 +32,7 @@ function renderState(){
 }
 
 function tick (){
-
+    renderState();
 
 }
 
@@ -81,4 +81,6 @@ function init(){
     
     });
 }
+
+//setInterval(tick, 1000/30);
 init();
