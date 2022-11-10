@@ -14,7 +14,7 @@ const f33 = document.getElementById("f33");
 let gameState = {};
 
 function buildInitialState(){
-    let newState = {
+    gameState = {
         players: ["X", "0"],
         board: [
             [null, null, null],
@@ -24,61 +24,98 @@ function buildInitialState(){
         started: true,
         finished: false,
         status: '',
-        currebtPlayer: 'X',
+        currentPlayer: 'X',
         
-    }
-gameState = {
-    ...newState
-};
+    };
 }
 
 //
 function renderState(){
-    elStatus.innerHTML = 'Player' + gameState.curentPlayer +""+ "make a Move";
+    console.log('rendering...');
+    if (gameState.finished === true){
+        elStatus.innerHTML = "Game is finished.";
+    } else {
+    elStatus.innerHTML = 'Player' + gameState.curentPlayer +" "+ "make a Move";
+    }
+    const templateEmpty = '';
+
     if(gameState.board[0][0]){
+        console.log(gameState.board[0][0]);
         f00.innerHTML = gameState.board[0][0];
+    }else {
+        f00.innerHTML = templateEmpty;
     }
     if(gameState.board[0][1]){
         f01.innerHTML = gameState.board[0][1];
+    } else {
+        f01.innerHTML = templateEmpty;
     }
     if(gameState.board[0][2]){
         f02.innerHTML = gameState.board[0][2];
+    } else {
+        f02.innerHTML = templateEmpty;
     }
     if(gameState.board[0][3]){
         f03.innerHTML = gameState.board[0][3];
+    } else {
+        f03.innerHTML = templateEmpty;
     }
     if(gameState.board[1][0]){
         f10.innerHTML = gameState.board[1][0];
+    } else {
+        f10.innerHTML = templateEmpty;
     }
     if(gameState.board[1][1]){
         f11.innerHTML = gameState.board[1][1];
+    } else {
+        f11.innerHTML = templateEmpty;
     }
     if(gameState.board[1][2]){
         f12.innerHTML = gameState.board[1][2];
+    } else {
+        f12.innerHTML = templateEmpty;
     }
     if(gameState.board[1][3]){
         f13.innerHTML = gameState.board[1][3];
+    } else {
+        f13.innerHTML = templateEmpty;
     }
     if(gameState.board[2][0]){
         f20.innerHTML = gameState.board[2][0];
+    } else {
+        f20.innerHTML = templateEmpty;
     }
     if(gameState.board[2][1]){
         f21.innerHTML = gameState.board[2][1];
+    }else {
+        f21.innerHTML = templateEmpty;
     }
     if(gameState.board[2][2]){
         f22.innerHTML = gameState.board[2][2];
+    } else {
+        f22.innerHTML = templateEmpty;
     }
 
 }
-
+/*
+function isGameRunning(){
+    if (gameState.started === true && gameState.finished === false){
+        return true; // game is running
+    } else {
+        return false
+    }
+}
+ need to create function that will check is fields are empty
+}
+*/
 function tick (){
     renderState();
 
 }
 
-function tryMakeAMOve(row, col){
+function tryMakeAMove(row, col){
 
-    const currentPlayer = gameState.currebtPlayer;
+    const currentPlayer = gameState.currentPlayer;
     gameState.borad[row][col] = currentPlayer;
     //CHANGE player?
     if(gameState.currentPlayer === 'X'){
@@ -86,11 +123,12 @@ function tryMakeAMOve(row, col){
     } else {
         gameState.currentPlayer = 'X';
     }
-    
+    tick();
 }
 
 function clicked(row,col){
     console.log ("clicked on board field: row", row, "col", col);
+    tryMakeAMove(row, col);
 }
 
 //How to initiate
@@ -133,6 +171,7 @@ function init(){
         clicked(3, 3);
     
     });
+    buildInitialState();
 }
 
 //setInterval(tick, 1000/30);
