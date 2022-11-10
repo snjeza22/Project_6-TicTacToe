@@ -23,11 +23,48 @@ function buildInitialState(){
         ],
         started: true,
         finished: false,
+        status: '',
+        currebtPlayer: 'X',
         
     }
 }
+
 //
 function renderState(){
+    elStatus.innerHTML = 'Player' + gameState.curentPlayer +""+ "make a Move";
+    if(gameState.board[0][0]){
+        f00.innerHTML = gameState.board[0][0];
+    }
+    if(gameState.board[0][1]){
+        f01.innerHTML = gameState.board[0][1];
+    }
+    if(gameState.board[0][2]){
+        f02.innerHTML = gameState.board[0][2];
+    }
+    if(gameState.board[0][3]){
+        f03.innerHTML = gameState.board[0][3];
+    }
+    if(gameState.board[1][0]){
+        f10.innerHTML = gameState.board[1][0];
+    }
+    if(gameState.board[1][1]){
+        f11.innerHTML = gameState.board[1][1];
+    }
+    if(gameState.board[1][2]){
+        f12.innerHTML = gameState.board[1][2];
+    }
+    if(gameState.board[1][3]){
+        f13.innerHTML = gameState.board[1][3];
+    }
+    if(gameState.board[2][0]){
+        f20.innerHTML = gameState.board[2][0];
+    }
+    if(gameState.board[2][1]){
+        f21.innerHTML = gameState.board[2][1];
+    }
+    if(gameState.board[2][2]){
+        f22.innerHTML = gameState.board[2][2];
+    }
 
 }
 
