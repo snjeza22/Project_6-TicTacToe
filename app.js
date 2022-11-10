@@ -27,6 +27,9 @@ function buildInitialState(){
         currebtPlayer: 'X',
         
     }
+gameState = {
+    ...newState
+};
 }
 
 //
@@ -71,6 +74,19 @@ function renderState(){
 function tick (){
     renderState();
 
+}
+
+function tryMakeAMOve(row, col){
+
+    const currentPlayer = gameState.currebtPlayer;
+    gameState.borad[row][col] = currentPlayer;
+    //CHANGE player?
+    if(gameState.currentPlayer === 'X'){
+        gameState.currentPlayer = '0';
+    } else {
+        gameState.currentPlayer = 'X';
+    }
+    
 }
 
 function clicked(row,col){
