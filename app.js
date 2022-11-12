@@ -1,21 +1,22 @@
 
 const elStatus = document.getElementById("status");
+const btnRestart = document.getElementById("restart")
+const f00 = document.getElementById("f00");
+const f01 = document.getElementById("f01");
+const f02 = document.getElementById("f02");
+const f10 = document.getElementById("f10");
 const f11 = document.getElementById("f11");
 const f12 = document.getElementById("f12");
-const f13 = document.getElementById("f13");
+const f20 = document.getElementById("f20");
 const f21 = document.getElementById("f21");
 const f22 = document.getElementById("f22");
-const f23 = document.getElementById("f23");
-const f31 = document.getElementById("f31");
-const f32 = document.getElementById("f32");
-const f33 = document.getElementById("f33");
 
 //game state
 let gameState = {};
 
 function buildInitialState(){
     gameState = {
-        players: ["X", "0"],
+        players: ["X", "O"],
         board: [
             [null, null, null],
             [null, null, null],
@@ -31,11 +32,11 @@ function buildInitialState(){
 
 //
 function renderState(){
-    console.log('rendering...');
+   // console.log('rendering...');
     if (gameState.finished === true){
         elStatus.innerHTML = "Game is finished.";
     } else {
-    elStatus.innerHTML = 'Player' + gameState.curentPlayer +" "+ "make a Move";
+    elStatus.innerHTML = 'Player' + gameState.currentPlayer +" "+ "make a Move";
     }
     const templateEmpty = '';
 
@@ -55,11 +56,6 @@ function renderState(){
     } else {
         f02.innerHTML = templateEmpty;
     }
-    if(gameState.board[0][3]){
-        f03.innerHTML = gameState.board[0][3];
-    } else {
-        f03.innerHTML = templateEmpty;
-    }
     if(gameState.board[1][0]){
         f10.innerHTML = gameState.board[1][0];
     } else {
@@ -75,11 +71,7 @@ function renderState(){
     } else {
         f12.innerHTML = templateEmpty;
     }
-    if(gameState.board[1][3]){
-        f13.innerHTML = gameState.board[1][3];
-    } else {
-        f13.innerHTML = templateEmpty;
-    }
+
     if(gameState.board[2][0]){
         f20.innerHTML = gameState.board[2][0];
     } else {
@@ -97,7 +89,11 @@ function renderState(){
     }
 
 }
-/*
+function tick (){
+    renderState();
+
+}
+
 function isGameRunning(){
     if (gameState.started === true && gameState.finished === false){
         return true; // game is running
@@ -105,24 +101,72 @@ function isGameRunning(){
         return false
     }
 }
- need to create function that will check is fields are empty
-}
-*/
-function tick (){
-    renderState();
+ //need to create function that will check is fields are empty
 
-}
+ function isFieldEmpty(row, col) {
+    if (gameState.board[row][col] === null) {
+        return true
+    } else {
+        return false
+    }
+ }
 
+ // to assure there are no more moves to be made I eneed to create function which will check is there any field empty
+
+ function isAnyFieldEmpty(){
+    let anyFieldEmpty = false;
+    for (let row = 0; row <=2; row++){
+        for (let col = 0; col <=2; col++){
+            if (isFieldEmpty (row, col)){
+                anyFieldEmpty = true
+            }
+        }
+    }
+    return anyFieldEmpty;
+ }
+
+ function isGameFinished (){
+
+if (isAnyFieldEmpty()){
+    return false;
+} else {
+    return true;
+}
+ }
+
+function updateStatus(){
+
+    if(isGameFinished()){
+        gameState.finished = true;
+
+    } else {
+
+    }
+}
 function tryMakeAMove(row, col){
 
     const currentPlayer = gameState.currentPlayer;
-    gameState.borad[row][col] = currentPlayer;
+    if (isGameRunning() && isFieldEmpty(row, col)){
+    gameState.board[row][col] = currentPlayer;
     //CHANGE player?
     if(gameState.currentPlayer === 'X'){
-        gameState.currentPlayer = '0';
+        gameState.currentPlayer = 'O';
     } else {
         gameState.currentPlayer = 'X';
+    } 
+    afterMove();
+} else {
+
     }
+}
+
+function afterMove() {
+    updateStatus();
+    tick()
+}
+
+function restart () {
+    buildInitialState();
     tick();
 }
 
@@ -135,40 +179,44 @@ function clicked(row,col){
 
 function init(){
     //adding all event listeners for each position
-    f11.addEventListener("click", function(ev){
+    btnRestart.addEventListener("click", function(e){
+        restart();
+    });
+
+    f00.addEventListener("click", function(e){
+        clicked(0, 0);
+    
+    });
+    f01.addEventListener("click", function(e){
+        clicked(0, 1);
+    
+    });
+    f02.addEventListener("click", function(e){
+        clicked(0, 2);
+    
+    });
+    f10.addEventListener("click", function(e){
+        clicked(1, 0);
+    
+    });
+    f11.addEventListener("click", function(e){
         clicked(1, 1);
     
     });
-    f12.addEventListener("click", function(ev){
+    f12.addEventListener("click", function(e){
         clicked(1, 2);
     
     });
-    f13.addEventListener("click", function(ev){
-        clicked(1, 3);
+    f20.addEventListener("click", function(e){
+        clicked(2, 0);
     
     });
     f21.addEventListener("click", function(ev){
         clicked(2, 1);
     
     });
-    f22.addEventListener("click", function(ev){
+    f22.addEventListener("click", function(e){
         clicked(2, 2);
-    
-    });
-    f23.addEventListener("click", function(ev){
-        clicked(2, 3);
-    
-    });
-    f31.addEventListener("click", function(ev){
-        clicked(3, 1);
-    
-    });
-    f32.addEventListener("click", function(ev){
-        clicked(3, 2);
-    
-    });
-    f33.addEventListener("click", function(ev){
-        clicked(3, 3);
     
     });
     buildInitialState();

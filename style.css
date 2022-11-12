@@ -35,7 +35,7 @@ height: 320px;
 .grid .row .field {
     width: 100px;
     height: 100px;
-   /*background-color: black;*/
+  
     background-color: darkslateblue;
 
     line-height: 100px;
