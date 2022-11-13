@@ -28,7 +28,7 @@ function buildInitialState(){
         winner: null, //no winner
         winCase:'', //we have couple of options to win the game
         status: '',
-        currentPlayer: 'X',
+        currentPlayer: randomXO(),
         
     };
 }
@@ -51,6 +51,17 @@ function renderState(){
     } else {
     elStatus.innerHTML = 'Player ' + gameState.currentPlayer +" "+ "make a Move";
     }
+
+// render winner msg
+if (gameState.finished){
+  if  (gameState.winner === null){
+    elWinnerMsg.innerHTML = "Draw!";
+} else {
+    elWinnerMsg.innerHTML = "Player " + gameState.winner + " is a winner!";
+} 
+} else {
+    elWinnerMsg.innerHTML ='';
+}
     const templateEmpty = '';
 
     if(gameState.board[0][0]){
@@ -138,6 +149,8 @@ function isGameRunning(){
     return anyFieldEmpty;
  }
 
+
+ // couple of win options: no empty fields first condition;1.any row, 2. any column, 3. two diagonals
  function isGameFinished (){
 
 if (isAnyFieldEmpty()){
