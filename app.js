@@ -1,6 +1,7 @@
 
 const elStatus = document.getElementById("status");
-const btnRestart = document.getElementById("restart")
+const btnRestart = document.getElementById("restart");
+const elWinnerMsg = document.getElementById("winner-msg");
 const f00 = document.getElementById("f00");
 const f01 = document.getElementById("f01");
 const f02 = document.getElementById("f02");
@@ -24,10 +25,22 @@ function buildInitialState(){
         ],
         started: true,
         finished: false,
+        winner: null, //no winner
+        winCase:'', //we have couple of options to win the game
         status: '',
         currentPlayer: 'X',
         
     };
+}
+
+// we need to randomly choose which player goes first (x or o)
+
+function randomXO() {
+    if (Math.random() > 0.5){
+        return "X";
+    } else {
+        return "O"
+    }
 }
 
 //
@@ -36,7 +49,7 @@ function renderState(){
     if (gameState.finished === true){
         elStatus.innerHTML = "Game is finished.";
     } else {
-    elStatus.innerHTML = 'Player' + gameState.currentPlayer +" "+ "make a Move";
+    elStatus.innerHTML = 'Player ' + gameState.currentPlayer +" "+ "make a Move";
     }
     const templateEmpty = '';
 

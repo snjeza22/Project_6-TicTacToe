@@ -1,41 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Snjezana's TicTacToe</title>
     <link rel="stylesheet" href="style.css">
-    <script src = "app.js" defer></script>
+    <script src="app.js" defer></script>
 </head>
+
 <body>
     <div>
-    <h1>Tic Tac Toe</h1>
-</div>
-<div>
-    <p><b>Status: <span id = "status"></span></b></p>
-</div>
-    <div class = "grid">
-        <div class = "row">
-            <div class = "field" id = "f00"></div>
-            <div class = "field" id = "f01"></div>
-            <div class = "field" id = "f02"></div>
+        <h1>Tic Tac Toe</h1>
+    </div>
+    <div>
+        <div class="grid">
+            <div class="row">
+                <div class="field" id="f00"></div>
+                <div class="field" id="f01"></div>
+                <div class="field" id="f02"></div>
+            </div>
+            <div class="row">
+                <div class="field" id="f10"></div>
+                <div class="field" id="f11"></div>
+                <div class="field" id="f12"></div>
+            </div>
+            <div class="row">
+                <div class="field" id="f20"></div>
+                <div class="field" id="f21"></div>
+                <div class="field" id="f22"></div>
+            </div>
         </div>
-        <div class = "row">
-            <div class = "field" id = "f10"></div>
-            <div class = "field" id = "f11"></div>
-            <div class = "field" id = "f12"></div>
-        </div>
-        <div class = "row">
-            <div class = "field" id = "f20"></div>
-            <div class = "field" id = "f21"></div>
-            <div class = "field" id = "f22"></div>
-        </div>
-        </div>
-        <p> 
-            <button id = "restart"> Restart</button>
+    </div>
+    <div>
+        <p class="status-msg">Status: <span id="status"></span></p>
+        <p class="winner-msg"><b id="winner-msg"></b></p>
+    </div>
+    <div>
+        <p>
+            <button id="restart"> Restart</button>
         </p>
     </div>
 
 </body>
+
 </html>
