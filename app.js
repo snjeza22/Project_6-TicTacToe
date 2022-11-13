@@ -154,24 +154,138 @@ function isGameRunning(){
 
  //1. rows
 
- function isWinnerInRow(){
+ function isWinnerInRow(board){
+    let win = false;
+    let winner = null;
+    let winCase = "";
     for (let row=0; row <=2; row++){
-        const firstField= board [row][0];
-        const secondField = board [row][1];
+        const firstField = board[row][0];
+        const secondField = board[row][1];
         const thirdField = board[row][2];
         if (firstField === null){
-
+ 
         }else {
             if (firstField === secondField && firstField=== thirdField){
-                return "Row Winner" + firstField;
+                win = true;
+                winner = firstField;
+                winCase = "Row" + row;
             }
         }
     }
+    const answer = {
+        win: win,
+        winner: winner,
+        winCase: winCase,
+    }
+    return answer;
  }
 
+ function isWinnerInCol(board){
+    let win = false;
+    let winner = null;
+    let winCase = "";
+    for (let col=0; col <=2; col++){
+        const firstField= board [0][col];
+        const secondField = board [1][col];
+        const thirdField = board[2][col];
+        if (firstField === null){
+ 
+        }else {
+            if (firstField === secondField && firstField=== thirdField){
+                win = true;
+                winner = firstField;
+                winCase = "Column" + col;
+            }
+        }
+    }
+    const answer = {
+        win: win,
+        winner: winner,
+        winCase: winCase,
+    }
+    return answer;
+ }
+
+ function isWinFirstDiag (board) {
+    let win = false;
+    let winner = null;
+    let winCase = "";
+    const firstField= board [0][0];
+    const secondField = board [1][1];
+    const thirdField = board[2][2];
+
+    if (firstField === null){
+
+    }else {
+        if (firstField === secondField && firstField === thirdField){
+            win = true;
+            winner = firstField;
+            winCase = "Diagonal 1";
+        }
+    }
+    const answer = {
+        win: win,
+        winner: winner,
+        winCase: winCase,
+    }
+    return answer;
+ }
+
+ function isWinSecondDiag (board) {
+    let win = false;
+    let winner = null;
+    let winCase = "";
+    const firstField= board [0][2];
+    const secondField = board [1][1];
+    const thirdField = board[2][0];
+
+    if (firstField === null){
+
+    }else {
+        if (firstField === secondField && firstField === thirdField){
+            win = true;
+            winner = firstField;
+            winCase = "Diagonal 2";
+        }
+    }
+    const answer = {
+        win: win,
+        winner: winner,
+        winCase: winCase,
+    }
+    return answer;
+ }
  //test with function 
 
 
+
+function isWin(board){
+    let win = false;
+    let answer = isWinnerInRow(board);
+    if (answer.win === true){
+        win = true;
+        gameState.finished = true;
+        gameState.winner = answer.winner;
+        gameState.wincase = answer.winCase
+    }
+return win;
+}
+function tryMakeAMove(row, col){
+
+    const currentPlayer = gameState.currentPlayer;
+    if (isGameRunning() && isFieldEmpty(row, col)){
+    gameState.board[row][col] = currentPlayer;
+    //CHANGE player?
+    if(gameState.currentPlayer === 'X'){
+        gameState.currentPlayer = 'O';
+    } else {
+        gameState.currentPlayer = 'X';
+    } 
+    afterMove();
+} else {
+
+    }
+}
 
 
  function isGameFinished (){
@@ -192,26 +306,21 @@ function updateStatus(){
 
     }
 }
-function tryMakeAMove(row, col){
 
-    const currentPlayer = gameState.currentPlayer;
-    if (isGameRunning() && isFieldEmpty(row, col)){
-    gameState.board[row][col] = currentPlayer;
-    //CHANGE player?
-    if(gameState.currentPlayer === 'X'){
-        gameState.currentPlayer = 'O';
-    } else {
-        gameState.currentPlayer = 'X';
-    } 
-    afterMove();
-} else {
-
-    }
-}
 
 function afterMove() {
-    updateStatus();
-    tick()
+  const board = gameState.board;
+  if (isWin(board)){
+
+  } else {
+    if(isAnyFieldEmpty()) {
+
+    } else {
+        gameState.finished = true;
+        gameState.winner=null;
+    }
+  }
+  tick()
 }
 
 function restart () {
