@@ -1,6 +1,7 @@
 * {
     box-sizing: border-box;
-    transition: all 0.2s ease;
+    transition: all 0.4s ease;
+   
 }
 html {
     font-size: 16px;
@@ -12,6 +13,9 @@ body {
     height: 400px;
     background-color: darkslateblue;
     color: white;
+}
+p, h1 {
+    text-align: center;
 }
 .grid{
 background-color: greenyellow;
@@ -48,4 +52,17 @@ height: 320px;
 }
 .grid .row .field:last-child {
     margin-right: 0px;
+}
+
+.status-msg {
+    font-size: 20px;
+    font-weight: 500;
+}
+.winner-msg {
+    font-size: 30px;
+    font-weight: 900;
+}
+button:hover {
+    background-color:greenyellow;
+
 }
