@@ -151,6 +151,29 @@ function isGameRunning(){
 
 
  // couple of win options: no empty fields first condition;1.any row, 2. any column, 3. two diagonals
+
+ //1. rows
+
+ function isWinnerInRow(){
+    for (let row=0; row <=2; row++){
+        const firstField= board [row][0];
+        const secondField = board [row][1];
+        const thirdField = board[row][2];
+        if (firstField === null){
+
+        }else {
+            if (firstField === secondField && firstField=== thirdField){
+                return "Row Winner" + firstField;
+            }
+        }
+    }
+ }
+
+ //test with function 
+
+
+
+
  function isGameFinished (){
 
 if (isAnyFieldEmpty()){
