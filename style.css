@@ -66,3 +66,71 @@ button:hover {
     background-color:greenyellow;
 
 }
+.win-line-container {
+    z-index: 99;
+    position: relative;
+    height: 0px;
+}
+.win-line-container .win-line {
+    position: absolute;
+    background-color: greenyellow;
+    border-radius: 8px;
+}
+.win-line-container .win-line.row0 {
+top: 44px;
+left: 0px;
+width: 320px;
+height: 8px;
+
+}
+
+.win-line-container .win-line.row1 {
+top: 154px;
+left: 0px;
+width: 320px;
+height: 8px;
+}
+
+.win-line-container .win-line.row2 {
+    top: 254px;
+    left: 0px;
+    width: 320px;
+    height: 8px;
+    }
+.win-line-container .win-line.col0 {
+        top: 0px;
+        left: 44px;
+        height: 8px;
+        width: 320px;
+       
+        }
+.win-line-container .win-line.col1 {
+     top: 0px;
+     left: 154px;
+    height: 8px;
+    width: 320px;
+           
+    }
+.win-line-container .win-line.col2 {
+        top: 0px;
+        left: 264px;
+        height: 8px;
+        width: 320px;
+       
+    }    
+.win-line-container .win-line.diagonal1 {
+        top: 154px;
+        left: 0px;
+        width: 320px;
+        height: 8px;
+        transform: rotate(45deg);
+        
+}
+.win-line-container .win-line.diagonal1 {
+    top: 154px;
+    left: 0px;
+    width: 320px;
+    height: 8px;
+    transform: rotate(135deg);
+    
+}

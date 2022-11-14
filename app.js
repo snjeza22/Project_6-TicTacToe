@@ -2,6 +2,7 @@
 const elStatus = document.getElementById("status");
 const btnRestart = document.getElementById("restart");
 const elWinnerMsg = document.getElementById("winner-msg");
+
 const f00 = document.getElementById("f00");
 const f01 = document.getElementById("f01");
 const f02 = document.getElementById("f02");
@@ -11,6 +12,8 @@ const f12 = document.getElementById("f12");
 const f20 = document.getElementById("f20");
 const f21 = document.getElementById("f21");
 const f22 = document.getElementById("f22");
+
+const elWinLineContainer = document.getElementById("win-line-container");
 
 //game state
 let gameState = {};
@@ -56,12 +59,24 @@ function renderState(){
 if (gameState.finished){
   if  (gameState.winner === null){
     elWinnerMsg.innerHTML = "Draw!";
+    elWinLineContainer
 } else {
     elWinnerMsg.innerHTML = "Player " + gameState.winner + " is a winner!";
 } 
 } else {
     elWinnerMsg.innerHTML ='';
 }
+
+    let templateWinLine ='';
+    if (gameState.finished){
+        if (gameState.winner === null){
+            //do nothing
+        } else {
+            templateWinLine = '<div class="win-line ' + gameState.winCase + '"></div>';
+        }
+    }
+    elWinLineContainer.innerHTML = templateWinLine;
+
     const templateEmpty = '';
 
     if(gameState.board[0][0]){
@@ -168,7 +183,7 @@ function isGameRunning(){
             if (firstField === secondField && firstField=== thirdField){
                 win = true;
                 winner = firstField;
-                winCase = "Row" + row;
+                winCase = "row" + row;
             }
         }
     }
@@ -194,7 +209,7 @@ function isGameRunning(){
             if (firstField === secondField && firstField=== thirdField){
                 win = true;
                 winner = firstField;
-                winCase = "Column" + col;
+                winCase = "col" + col;
             }
         }
     }
@@ -220,7 +235,7 @@ function isGameRunning(){
         if (firstField === secondField && firstField === thirdField){
             win = true;
             winner = firstField;
-            winCase = "Diagonal 1";
+            winCase = "diagonal1";
         }
     }
     const answer = {
@@ -245,7 +260,7 @@ function isGameRunning(){
         if (firstField === secondField && firstField === thirdField){
             win = true;
             winner = firstField;
-            winCase = "Diagonal 2";
+            winCase = "diagonal2";
         }
     }
     const answer = {
