@@ -122,7 +122,7 @@ function isGameRunning(){
     if (gameState.started === true && gameState.finished === false){
         return true; // game is running
     } else {
-        return false
+        return false;
     }
 }
  //need to create function that will check is fields are empty
@@ -267,6 +267,30 @@ function isWin(board){
         gameState.finished = true;
         gameState.winner = answer.winner;
         gameState.wincase = answer.winCase
+    } else {
+        let answer = isWinnerInCol(board);
+        if (answer.win === true){
+            win = true;
+            gameState.finished = true;
+            gameState.winner = answer.winner;
+            gameState.wincase = answer.winCase
+        } else {
+            let answer = isWinFirstDiag(board);
+            if (answer.win === true){
+                win = true;
+                gameState.finished = true;
+                gameState.winner = answer.winner;
+                gameState.wincase = answer.winCase
+            } else {
+                let answer = isWinSecondDiag(board);
+                if (answer.win === true){
+                    win = true;
+                    gameState.finished = true;
+                    gameState.winner = answer.winner;
+                    gameState.wincase = answer.winCase;
+                }
+            }
+        }
     }
 return win;
 }
@@ -287,8 +311,22 @@ function tryMakeAMove(row, col){
     }
 }
 
+function afterMove() {
+    const board = gameState.board;
+    if (isWin(board)){
+  
+    } else {
+      if(isAnyFieldEmpty()) {
+  
+      } else {
+          gameState.finished = true;
+          gameState.winner=null;
+      }
+    }
+    tick()
+  }
 
- function isGameFinished (){
+ /*function isGameFinished (){
 
 if (isAnyFieldEmpty()){
     return false;
@@ -296,6 +334,7 @@ if (isAnyFieldEmpty()){
     return true;
 }
  }
+
 
 function updateStatus(){
 
@@ -306,22 +345,9 @@ function updateStatus(){
 
     }
 }
+*/
 
 
-function afterMove() {
-  const board = gameState.board;
-  if (isWin(board)){
-
-  } else {
-    if(isAnyFieldEmpty()) {
-
-    } else {
-        gameState.finished = true;
-        gameState.winner=null;
-    }
-  }
-  tick()
-}
 
 function restart () {
     buildInitialState();
